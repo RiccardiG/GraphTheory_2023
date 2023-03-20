@@ -1,0 +1,83 @@
+Program to develop:
+
+The program must perform the following actions:
+    1. Reading a constraint table from a .txt file, storing this information in memory and displaying the constraint
+       table on the screen.
+    2. Build a graph corresponding to that constraint table.
+    3. Check that this graph satisfies all the properties necessary for it to be a scheduling graph:
+        - a single entry point
+        - a single exit point
+        - no cycles
+        - same weights for all outgoing edges of a vertex
+        - outgoing edges of the entry vertex have weight 0
+        - no negative edges
+    4. If all those properties are satisfied, compute the earliest date calendar, the latest date calendar and the
+       floats.
+            When computing the latest date calendar, assume that the latest date of the end of project coincides with
+            its earliest date. As you know, in order to compute the calendars, you must first do a topological sort of
+            the graph, i.e. sort the vertices in the growing order of ranks. Therefore, you must find the ranks for all
+            vertices using an algorithm of your choice.
+    5. Display the earliest date calendar, the latest date calendar and the floats on the screen in a readable format.
+
+The program should be able to read any table in the following form: on each line, the first number is the the task
+number, the second number is the duration of the task, the others (if present) are the predecessors of the task.
+
+Example of a constraint table:
+1 9
+2 2
+3 3 2
+4 5 1
+5 2 1 4
+6 2 5
+7 2 4
+8 4 4 5
+9 5 4
+10 1 2 3
+11 2 1 5 6 7 8
+
+The N tasks are numbered from 1 to N. The fictitious task I (the entry point) is numbered 0. The fictitious task O (the
+exit point) is numbered N+1. The fictitious task I has no predecessors and the fictitious task O has no successors.
+
+The program should be able to import any constraint table constructed as described above, including the case where
+the corresponding graph is not a scheduling graph, contains cycles, is not connected, and be able to transform it into
+a graph in a matrix form (a value matrix).
+
+Set up a program that performs the following actions:
+    1. Reads a constraint table from a .txt file, stores this information in memory and displays the constraint table
+       on the screen.
+    2. Displays the graph corresponding to that constraint table in a matrix form, the graph must contain the two
+       fictitious tasks I and O (labeled 0 and N+1) (The display must be done from memory and not from the file)
+    3. Check the necessary properties for the graph to be a scheduling graph:
+        - a single entry point
+        - a single exit point
+        - no cycles
+        - same weights for all outgoing edges of a vertex
+        - outgoing edges of the entry vertex have weight 0
+        - no negative edges
+    4. If all those properties are satisfied, compute the earliest date calendar, the latest date calendar and the
+       floats
+    5. Compute the rank for all vertices
+    6. Compute the critical path or paths and display them on the screen
+
+The global structure of the program can be described by the following pseudo-code:
+
+BEGIN
+           WHILE the user wants to test a constraint table DO
+                Choose the constraint table to work with
+                Read it from a file and store it in memory
+                Create the matrix of the graph corresponding to
+                that constraint table, and display it
+                Check the properties necessary for the graph to
+                be a scheduling graph
+                IF «yes» THEN
+                    Compute the ranks of all vertices and display them
+                    Compute the earliest dates calendar and the latest dates calendar and display them
+                    Compute the floats and display them
+                    Compute the critical path(s) and display it or them
+                ENDIF
+                ELSE ask the user if he wants to use another constraint table
+           ENDWHILE
+END
+
+Each step should be accompanied by a message on the screen that explains what is being done and the traces of what
+is being computed.
